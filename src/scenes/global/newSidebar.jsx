@@ -1,26 +1,41 @@
 import { useState } from "react";
-import { Menu, MenuItem } from "react-pro-sidebar";
-// import "react-pro-sidebar/dist/css/styles.css"
-import { Box, IconButton, Typography } from "@mui/material";
-// import { Link } from "react-router-dom";
+import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Link } from "react-router-dom";
+import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../themes";
-import { PeopleOutline } from "@mui/icons-material";
-import { HomeOutlined } from "@mui/icons-material";
-import { ContactsOutlined } from "@mui/icons-material";
-import { Person } from "@mui/icons-material";
-import { HelpOutline, BarChart } from "@mui/icons-material";
-import { TimelineOutlined } from "@mui/icons-material";
-import { PieChartOutlineOutlined } from "@mui/icons-material";
-import { CalendarTodayOutlined } from "@mui/icons-material";
-import { ReceiptOutlined } from "@mui/icons-material";
-import { MenuOutlined } from "@mui/icons-material";
-import { MapOutlined } from "@mui/icons-material";
-import { useTheme } from "@emotion/react";
-import Item from "./item";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
+import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
+import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
+import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
+const Item = ({ title, to, icon, selected, setSelected }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  return (
+    <MenuItem
+      active={selected === title}
+      style={{
+        color: colors.grey[100],
+      }}
+      onClick={() => setSelected(title)}
+      icon={icon}
+    >
+      <Typography>{title}</Typography>
+      <Link to={to} />
+    </MenuItem>
+  );
+};
 
-
-export default function Sidebar() {
+const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -46,12 +61,12 @@ export default function Sidebar() {
         },
       }}
     >
-      <Sidebar collapsed={isCollapsed}>
+      <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
-            icon={isCollapsed ? <MenuOutlined /> : undefined}
+            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
             style={{
               margin: "10px 0 20px 0",
               color: colors.grey[100],
@@ -68,7 +83,7 @@ export default function Sidebar() {
                   ADMINIS
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                  <MenuOutlined />
+                  <MenuOutlinedIcon />
                 </IconButton>
               </Box>
             )}
@@ -81,7 +96,7 @@ export default function Sidebar() {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`../../assets/user.png`}
+                  src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_qMKynnis-IU72STqMQvtr20rIlIKQGNh_60s_EU-sA&s`}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
@@ -105,7 +120,7 @@ export default function Sidebar() {
             <Item
               title="Dashboard"
               to="/"
-              icon={<HomeOutlined />}
+              icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -120,21 +135,21 @@ export default function Sidebar() {
             <Item
               title="Manage Team"
               to="/team"
-              icon={<PeopleOutline />}
+              icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Contacts Information"
               to="/contacts"
-              icon={<ContactsOutlined />}
+              icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Invoices Balances"
               to="/invoices"
-              icon={<ReceiptOutlined />}
+              icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -149,21 +164,21 @@ export default function Sidebar() {
             <Item
               title="Profile Form"
               to="/form"
-              icon={<Person />}
+              icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Calendar"
               to="/calendar"
-              icon={<CalendarTodayOutlined />}
+              icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="FAQ Page"
               to="/faq"
-              icon={<HelpOutline />}
+              icon={<HelpOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -178,35 +193,36 @@ export default function Sidebar() {
             <Item
               title="Bar Chart"
               to="/bar"
-              icon={<BarChart />}
+              icon={<BarChartOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Pie Chart"
               to="/pie"
-              icon={<PieChartOutlineOutlined />}
+              icon={<PieChartOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Line Chart"
               to="/line"
-              icon={<TimelineOutlined />}
+              icon={<TimelineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Geography Chart"
               to="/geography"
-              icon={<MapOutlined />}
+              icon={<MapOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
           </Box>
         </Menu>
-      </Sidebar>
+      </ProSidebar>
     </Box>
   );
-}
+};
 
+export default Sidebar;
