@@ -16,7 +16,7 @@ function App() {
         {/* <Sidebar /> */}
         <main className="content">
           <Topbar />
-          {/* <Routes>
+          <Routes>
             {/* <Route path="/" element={<Dashboard />}/> */}
             {/* <Route path="/team" element={<Team />}/>
             <Route path="/contacts" element={<Contacts />}/>
@@ -28,7 +28,7 @@ function App() {
             <Route path="/faq" element={<FAQ />}/>
             <Route path="/geography" element={<Geography />}/>
             <Route path="/calendar" element={<Calendar />}/> */}
-          </Routes> */}
+          </Routes>
 
         </main>
       </div>
