@@ -87,7 +87,27 @@ export default function Calendar() {
 
         {/* CALENDAR */}
         <Box flex={"1 1 100%"} ml={"15px"}>
-            <FullCalendar/>
+          <FullCalendar
+            height="75vh"
+            plugins={{
+              timeGridPlugin,
+              listPlugin,
+              interactionPlugin,
+              dayGridPlugin,
+            }}
+            headerToolbar={{
+              left: "prev, next, today",
+              center: "title",
+              right: "dayGridMonth, timeGridWeek, timeGridDay, listMonth"
+            }}
+            initialView="dayGridMonth"
+            editable={true}
+            selectable={true}
+            selectMirror={true}
+            dayMaxEvents={true}
+            select={handleDateClick}
+            eventClick={handleEventClick}
+          />
         </Box>
       </Box>
     </Box>
