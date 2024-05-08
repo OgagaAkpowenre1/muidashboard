@@ -9,8 +9,8 @@ import {
 } from "@mui/material";
 import Header from "../../components/header";
 import { tokens } from "../../themes";
-import FullCalendar, { formatDate } from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid"
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
@@ -72,11 +72,7 @@ export default function Calendar() {
                   primary={event.title}
                   secondary={
                     <Typography>
-                      {formatDate(event.start, {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
+                      Hey there
                     </Typography>
                   }
                 />
@@ -89,12 +85,12 @@ export default function Calendar() {
         <Box flex={"1 1 100%"} ml={"15px"}>
           <FullCalendar
             height="75vh"
-            plugins={{
+            plugins={[
               timeGridPlugin,
               listPlugin,
               interactionPlugin,
               dayGridPlugin,
-            }}
+            ]}
             headerToolbar={{
               left: "prev, next, today",
               center: "title",
@@ -107,6 +103,19 @@ export default function Calendar() {
             dayMaxEvents={true}
             select={handleDateClick}
             eventClick={handleEventClick}
+            eventsSet={(events) => setCurrentEvents(events)}
+            initialEvents={[
+              {
+                id: "1234",
+                title: "All day event",
+                date: "2024-05-07"
+              },
+              {
+                id: "2345",
+                title: "Not All day event",
+                date: "2024-05-08"
+              }
+            ]}
           />
         </Box>
       </Box>
